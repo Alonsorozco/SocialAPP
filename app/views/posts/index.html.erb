@@ -1,0 +1,10 @@
+<h1>Todas las Publicaciones</h1>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.content, post_path(post) %> por <%= link_to post.user.email, user_profile_path(post.user) %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Crear nueva publicación', new_post_path if user_signed_in? %>

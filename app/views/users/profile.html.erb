@@ -1,0 +1,24 @@
+<% if @user %>
+  <h1>Perfil de <%= @user.email %></h1>
+ 
+
+  <h2>Mis Publicaciones</h2>
+  <% if @posts.any? %>
+    <ul>
+      <% @posts.each do |post| %>
+        <li><%= post.content %></li>
+         <!-- Enlace para editar la publicación -->
+         <%= link_to 'Editar', edit_post_path(post) %> |
+       <%= button_to "Destroy this post", post_path(post), method: :delete %>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No tienes publicaciones aún.</p>
+  <% end %>
+<% else %>
+  <p>Usuario no encontrado.</p>
+<% end %>
+
+
+<%= link_to 'Crear nueva publicación', new_post_path %>
+<%= link_to 'Todas Las Publicaciones', posts_path %>
