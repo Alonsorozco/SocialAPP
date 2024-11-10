@@ -9,7 +9,7 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 # Dockerfile
-FROM ruby:3.2.3
+FROM ruby:3.2-slim
 WORKDIR /app
 
 # Copia los archivos de la aplicación
