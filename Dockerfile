@@ -9,15 +9,21 @@ COPY Gemfile Gemfile.lock ./
 
 # Instala las dependencias del bundle
 RUN bundle install
+RUN yarn install
+RUN RAILS_ENV=production ./bin/rails assets:precompile
 
 # Copia el resto del código de la aplicación en el contexto del contenedor
 COPY . .
 
 # Precompila los assets (si es una aplicación Rails)
 RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
-
+RUN RAILS_ENV=production ./bin/rails assets:precompile
 # Exponer el puerto 3000 para la aplicación Rails
 EXPOSE 3000
 
 # Comando para iniciar el servidor Rails
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+
+
+
+
