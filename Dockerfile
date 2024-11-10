@@ -8,7 +8,34 @@
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
+# Dockerfile
+FROM ruby:3.2.3
+WORKDIR /app
+
+# Copia los archivos de la aplicación
+COPY . .
+
+# Otorga permisos de ejecución a bin/rails
+RUN chmod +x bin/rails
+
+# Instala dependencias de Ruby y Node
+RUN bundle install
+RUN yarn install
+
+# Ejecuta la precompilación de assets
+RUN ./bin/rails assets:precompile
+
+
+ARG RAILS_MASTER_KEY
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_DEPLOYMENT="1" \
+    RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+
+
 ARG RUBY_VERSION=3.2.3
+RUN RAILS_ENV=production ./bin/rails assets:precompile
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
