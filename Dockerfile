@@ -16,6 +16,7 @@ WORKDIR /app
 
 # Copia los archivos de la aplicación
 COPY Gemfile Gemfile.lock ./
+COPY config/puma.rb config/puma.rb
 RUN bundle install --deployment --without development test
 
 # Instala las dependencias de Ruby y JavaScript
