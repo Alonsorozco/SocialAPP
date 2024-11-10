@@ -10,8 +10,8 @@ WORKDIR /app
 COPY . .
 
 # Instala las dependencias de Ruby y JavaScript
-
-
+RUN gem install puma
+bundle install
 # Precompila los assets
 #RUN RAILS_ENV=production bundle exec rake assets:precompile
 
