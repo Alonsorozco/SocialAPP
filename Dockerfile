@@ -15,7 +15,8 @@ RUN apt-get update -qq && apt-get install -y \
 WORKDIR /app
 
 # Copia los archivos de la aplicación
-COPY . .
+COPY Gemfile Gemfile.lock ./
+RUN bundle install --deployment --without development test
 
 # Instala las dependencias de Ruby y JavaScript
 
