@@ -1,19 +1,20 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Configura si los activos deben precompilarse dinámicamente
+  config.assets.debug = true
 
-  # Make code changes take effect immediately without server restart.
-  config.enable_reloading = true
-
-  # Do not eager load code on boot.
+  # Otros ajustes para el entorno de desarrollo
+  config.cache_classes = false
   config.eager_load = false
-
-  # Show full error reports.
   config.consider_all_requests_local = true
+  config.action_controller.perform_caching = false
+  config.action_mailer.raise_delivery_errors = false
+  config.active_support.deprecation = :log
+  config.active_record.migration_error = :page_load
+  config.assets.quiet = true
 
-  # Enable server timing.
-  config.server_timing = true
+
 
   # Enable/disable Action Controller caching. By default Action Controller caching is disabled.
   # Run rails dev:cache to toggle Action Controller caching.
