@@ -1,7 +1,15 @@
 FROM ruby:3.2-slim
 
 # Instala dependencias del sistema (PostgreSQL, Node.js, Yarn, etc.)
-RUN apt-get update -qq && apt-get install -y postgresql-client nodejs yarn
+RUN apt-get update -qq && apt-get install -y \
+  build-essential \
+  libpq-dev \
+  nodejs \
+  yarn \
+  libssl-dev \
+  libreadline-dev \
+  zlib1g-dev
+
 
 # Configura el directorio de trabajo
 WORKDIR /app
@@ -10,7 +18,7 @@ WORKDIR /app
 COPY . .
 
 # Instala las dependencias de Ruby y JavaScript
-RUN gem install puma
+
 
 # Precompila los assets
 #RUN RAILS_ENV=production bundle exec rake assets:precompile
