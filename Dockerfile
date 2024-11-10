@@ -34,7 +34,7 @@ ENV RAILS_ENV="production" \
     RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
 
-ARG RUBY_VERSION=3.2.3
+FROM ruby:3.2-slim
 RUN RAILS_ENV=production ./bin/rails assets:precompile
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
