@@ -81,7 +81,9 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: social_app_production
+    database: <%= ENV['DATABASE_URL'] %>
+    pool: 5
+    timeout: 5000
     username: social_app
     password: <%= ENV["SOCIAL_APP_DATABASE_PASSWORD"] %>
   cache:
