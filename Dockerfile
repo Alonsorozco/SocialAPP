@@ -13,7 +13,7 @@ COPY . .
 
 
 # Precompila los assets
-RUN RAILS_ENV=production bundle exec rake assets:precompile
+#RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 # Expone el puerto
 EXPOSE 3000
