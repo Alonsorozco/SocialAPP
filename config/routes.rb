@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   # Ruta personalizada para el perfil del usuario actual
   get 'profile/:id', to: 'users#profile', as: :user_profile
 
-  root "posts#index"
+  root "users#sign_in"
 end
