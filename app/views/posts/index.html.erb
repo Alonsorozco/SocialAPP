@@ -1,5 +1,5 @@
 <h1>Todas las Publicaciones</h1>
-
+<% if user_signed_in? %>
 <ul>
   <% @posts.each do |post| %>
     <li>
@@ -8,3 +8,7 @@
   <% end %>
 </ul>
 <%= link_to 'Crear nueva publicación', new_post_path if user_signed_in? %>
+
+<% else%>
+<%= render "homes/visit" %>
+<% end%>

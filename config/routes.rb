@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', registration: 'register' }
-  
+  devise_for :users 
+
   resources :posts
 
 
@@ -9,6 +9,5 @@ Rails.application.routes.draw do
 
   # Ruta personalizada para el perfil del usuario actual
   get 'profile/:id', to: 'users#profile', as: :user_profile
-
-  root "user#login"
+  root 'posts#index'
 end
