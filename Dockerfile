@@ -10,6 +10,8 @@ RUN apt-get update -qq && apt-get install -y \
   libreadline-dev \
   zlib1g-dev
 
+RUN bundle exec rails assets:precompile
+
 
 # Configura el directorio de trabajo
 WORKDIR /app
