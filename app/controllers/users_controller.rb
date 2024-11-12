@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:profile, :edit, :update, :destroy]
   def new
   end
 
   def profile
-    @posts = @user.posts
+    
+    @user = User.find(params[:id])
+    @posts = @user.posts 
   end
 
   def edit
@@ -23,16 +25,17 @@ class UsersController < ApplicationController
   def create
   end
 
-
+  def destroy
+  end
 
   private
   def set_user
     @user = User.find(params[:id])
-    @post = Post.find(params[:id])
+    @posts = Post.find(params[:id])
   end
 
   def user_params
     params.expect(post: [ :title, :content, :user_id ])
-  
+    params.expect(user: [ :id ])
   end
 end
