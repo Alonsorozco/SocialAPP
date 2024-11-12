@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update ]
 
   def new
   end
 
-  def show
-
+  def profile
+    @posts = @user.posts
   end
 
   def edit
@@ -29,9 +28,11 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = User.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:username)
+    params.expect(post: [ :title, :content, :user_id ])
+  
   end
 end
